@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title></title>
+    <title>calmgram</title>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cute+Font&family=Nanum+Pen+Script&display=swap');
@@ -85,7 +85,7 @@
         }
 
         button:hover {
-            background: silver;
+            background: rgba(192, 192, 192, 0.253);
             border-radius: 5px;
         }
 
@@ -168,8 +168,33 @@
 
     <script>
 
-        function tgl() {
-            $('#nope').toggle();
+        /* 사용하고자 하는 api url*/
+        let url = "https://worldtimeapi.org/api/timezone/Asia/Seoul"
+        let setTime = 3;
+
+        function First_Run() {
+            /* fetch를 이용한 url 통신 */
+            fetch(url).then(res => res.json()).then(data => {
+                /* 정규 표현식(특정한 규칙을 가진 문자열의 집합을 표현하는데 사용하는 형식 언어) */
+                var regex = /[^0-9]/g;
+                /*datetime라는 이름의 데이터를 가져와서 regex형식의 기준으로 나눠 배열로 저장. 나눈 데이터를 
+                문자열 양 끝의 공백을 제거하고 원본 문자열을 수정하지 않고 새로운 문자열을 반환 */
+                let mise = data['datetime'].split(regex).map(x => x.trim());;
+                /*문자열 변경*/
+                $(".time").text(`${mise[0]}년 ${mise[1]}월 ${mise[2]}일 ${mise[3]}시 ${mise[4]}분`);
+            })
+        }
+
+        function startInterval(seconds, callback) {
+            callback();
+            return setInterval(callback, seconds * 1000);
+        }
+
+        startInterval(setTime, First_Run);
+
+        function openclose() {
+            $('#mysortbtn').toggle();
+
         }
     </script>
 
@@ -197,6 +222,9 @@
                             style="font-size:30px; margin-right: 30px;"></i>박서진</button></a><br>
                 <br><a href="6.html"><button><i class="fa-regular fa-heart"
                             style="font-size:30px; margin-right: 30px;"></i>복광수</button></a><br>
+
+                <p style = "text-align:center;"> 현재 시각 </p>
+                <p class="time" style = "text-align: center;"> 현재 시각 Text </p>
             </Nav>
         </div>
 
@@ -209,8 +237,7 @@
                 <div style="font-size: 25px; text-align: center;">
 
                 </div>
-                <button onclick="tgl()" id="tgbtn"
-                style="margin-left: 70%; background-color: darkgrey; font-size: 20px; color: white;">더 알아보기!</button>
+
             </div>
 
             <div id="nope">
@@ -224,102 +251,108 @@
                     <h2 style="font-size: 15px; margin-bottom: 5px; margin-left: 15px;"> 차분하조 </h2>
                 </div>
 
-                <p>회원님을 위한 추천</p>
+                <p>회원님을 위한 추천
 
+                    <button id="tgbtn" onclick="openclose()"
+                        style="margin: 20px 20px; background-color: transparent; font-size: 10px; color: black;">알아보기</button>
+                </p>
 
-                <div id="sort" style="margin-top: 10px;">
-                    <div class="circle">
-                        <a href="https://www.instagram.com/99_sj.m/">
-                            <div class="jb-a">
-                                <img class="img-block" style="border-radius: 50%;"
-                                    src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2022/11/urbanbrush-20221108214712319041.jpg"
-                                    alt="...">
-                                <img src="https://i.ibb.co/WDGN19J/a.png" alt="" class="jb-c" img class="img-block"
-                                    style="border-radius: 50%;">
-                            </div>
-                        </a>
+                <div class="sortbtn" id="mysortbtn">
+                    <div id="sort" style="margin-top: 10px;">
+                        <div id="circlebtn" class="circle">
+                            <a href="https://www.instagram.com/99_sj.m/">
+                                <div class="jb-a">
+                                    <img class="img-block" style="border-radius: 50%;"
+                                        src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2022/11/urbanbrush-20221108214712319041.jpg"
+                                        alt="...">
+                                    <img src="https://i.ibb.co/WDGN19J/a.png" alt="" class="jb-c" img class="img-block"
+                                        style="border-radius: 50%;">
+                                </div>
+                            </a>
+                        </div>
+                        <h2 style="font-size: 15px; margin-bottom: 5px; margin-left: 15px;"> @99_sj.m </h2>
+
                     </div>
-                    <h2 style="font-size: 15px; margin-bottom: 5px; margin-left: 15px;"> @99_sj.m </h2>
 
-                </div>
-
-                <div id="sort">
-                    <div class="circle">
-                        <a href=https://www.instagram.com/arumi729>
-                            <div class="jb-a">
-                                <img class="img-block" style="border-radius: 50%;"
-                                    src="https://search.pstatic.net/sunny/?src=http%3A%2F%2Fartmug.kr%2Fimage%2Fup_img%2Fdetail%2Fgoods_6476%2F16786031530.gif&type=sc960_832_gif"
-                                    alt="...">
-                                <img src="https://i.ibb.co/tHFRwdX/b.png" alt="" class="jb-c" img class="img-block"
-                                    style="border-radius: 50%;">
-                            </div>
-                        </a>
+                    <div id="sort">
+                        <div class="circle">
+                            <a href=https://www.instagram.com/arumi729>
+                                <div class="jb-a">
+                                    <img class="img-block" style="border-radius: 50%;"
+                                        src="https://search.pstatic.net/sunny/?src=http%3A%2F%2Fartmug.kr%2Fimage%2Fup_img%2Fdetail%2Fgoods_6476%2F16786031530.gif&type=sc960_832_gif"
+                                        alt="...">
+                                    <img src="https://i.ibb.co/tHFRwdX/b.png" alt="" class="jb-c" img class="img-block"
+                                        style="border-radius: 50%;">
+                                </div>
+                            </a>
+                        </div>
+                        <h2 style="font-size: 15px; margin-bottom: 5px; margin-left: 15px;"> @arumi729 </h2>
                     </div>
-                    <h2 style="font-size: 15px; margin-bottom: 5px; margin-left: 15px;"> @arumi729 </h2>
-                </div>
 
-                <div id="sort">
-                    <div class="circle">
-                        <a href="https://www.instagram.com/wjdrbs2024/">
-                            <div class="jb-a">
-                                <img class="img-block" style="border-radius: 50%;"
-                                    src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxNzAxMDRfNzkg%2FMDAxNDgzNDY1NjYzNzU2.bg4w6I5AQi6x7fMey_PaaHUvKDaUfuvqJpP6lzxAgVgg.d6ARFMDTZK4heN4er1b333u8CQ4_dnNY4tlEBt401Mkg.JPEG.xenom%2F%25B5%25BF%25B9%25B0_%25BA%25B4%25BE%25C6%25B8%25AE_%25C6%25C4%25B6%25F5%25B8%25D3%25B8%25AE.jpg&type=sc960_832"
-                                    alt="...">
-                                <img src="https://i.ibb.co/K9b04FW/c.png" alt="" class="jb-c" img class="img-block"
-                                    style="border-radius: 50%;">
-                            </div>
-                        </a>
+                    <div id="sort">
+                        <div class="circle">
+                            <a href="https://www.instagram.com/wjdrbs2024/">
+                                <div class="jb-a">
+                                    <img class="img-block" style="border-radius: 50%;"
+                                        src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxNzAxMDRfNzkg%2FMDAxNDgzNDY1NjYzNzU2.bg4w6I5AQi6x7fMey_PaaHUvKDaUfuvqJpP6lzxAgVgg.d6ARFMDTZK4heN4er1b333u8CQ4_dnNY4tlEBt401Mkg.JPEG.xenom%2F%25B5%25BF%25B9%25B0_%25BA%25B4%25BE%25C6%25B8%25AE_%25C6%25C4%25B6%25F5%25B8%25D3%25B8%25AE.jpg&type=sc960_832"
+                                        alt="...">
+                                    <img src="https://i.ibb.co/K9b04FW/c.png" alt="" class="jb-c" img class="img-block"
+                                        style="border-radius: 50%;">
+                                </div>
+                            </a>
+                        </div>
+                        <h2 style="font-size: 15px; margin-bottom: 5px; margin-left: 15px;"> @wjdrbs2024</h2>
                     </div>
-                    <h2 style="font-size: 15px; margin-bottom: 5px; margin-left: 15px;"> @wjdrbs2024</h2>
-                </div>
 
-                <div id="sort">
-                    <div class="circle">
-                        <a href="https://www.instagram.com/sh_unning/">
-                            <div class="jb-a">
-                                <img class="img-block" style="border-radius: 50%;"
-                                    src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA5MjhfMzMg%2FMDAxNjMyNzkyODk2MDM3.6a-vcF3hVKF-wXJlypJFzACcRho32EfG437inB1lZ1Ig.CWrIh5dVUGVqJGHC1A2TXBJqmCRv533NkETEaoV7JPIg.PNG.huganism%2Fimage.png&type=sc960_832"
-                                    alt="...">
-                                <img src="https://i.ibb.co/LZ9qmVQ/d.png" alt="" class="jb-c" img class="img-block"
-                                    style="border-radius: 50%;">
-                            </div>
-                        </a>
+                    <div id="sort">
+                        <div class="circle">
+                            <a href="https://www.instagram.com/sh_unning/">
+                                <div class="jb-a">
+                                    <img class="img-block" style="border-radius: 50%;"
+                                        src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA5MjhfMzMg%2FMDAxNjMyNzkyODk2MDM3.6a-vcF3hVKF-wXJlypJFzACcRho32EfG437inB1lZ1Ig.CWrIh5dVUGVqJGHC1A2TXBJqmCRv533NkETEaoV7JPIg.PNG.huganism%2Fimage.png&type=sc960_832"
+                                        alt="...">
+                                    <img src="https://i.ibb.co/LZ9qmVQ/d.png" alt="" class="jb-c" img class="img-block"
+                                        style="border-radius: 50%;">
+                                </div>
+                            </a>
+                        </div>
+                        <h2 style="font-size: 15px; margin-bottom: 5px; margin-left: 15px;"> @sh_unning </h2>
                     </div>
-                    <h2 style="font-size: 15px; margin-bottom: 5px; margin-left: 15px;"> @sh_unning </h2>
-                </div>
 
-                <div id="sort">
-                    <div class="circle">
-                        <a href="https://www.instagram.com/ah_ma.do/">
-                            <div class="jb-a">
-                                <img class="img-block" style="border-radius: 50%;"
-                                    src="https://i.ibb.co/XyRPQb1/image-jip.jpg" alt="...">
-                                <img src="https://i.ibb.co/c1Xc9G4/e.png" alt="" class="jb-c" img class="img-block"
-                                    style="border-radius: 50%;">
-                            </div>
-                        </a>
+                    <div id="sort">
+                        <div class="circle">
+                            <a href="https://www.instagram.com/ah_ma.do/">
+                                <div class="jb-a">
+                                    <img class="img-block" style="border-radius: 50%;"
+                                        src="https://i.ibb.co/XyRPQb1/image-jip.jpg" alt="...">
+                                    <img src="https://i.ibb.co/c1Xc9G4/e.png" alt="" class="jb-c" img class="img-block"
+                                        style="border-radius: 50%;">
+                                </div>
+                            </a>
+                        </div>
+                        <h2 style="font-size: 15px; margin-bottom: 5px; margin-left: 15px;"> @ah_ma.do </h2>
                     </div>
-                    <h2 style="font-size: 15px; margin-bottom: 5px; margin-left: 15px;"> @ah_ma.do </h2>
-                </div>
 
-                <div id="sort">
-                    <div class="circle">
-                        <a href="https://www.instagram.com/buck_k_s/">
-                            <div class="jb-a">
-                                <img class="img-block" style="border-radius: 50%;"
-                                    src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA5MDJfMjU3%2FMDAxNjMwNTY0ODcwNTE3.VjgOeC-KG7iCDeITLNp7FR7lhMg4k7njqYmW_a5LEPAg.9KQ1kWRFlKVogdGM9lkb4BlDze0r-lNQZKvrPFw3yd8g.PNG.ricemuseum1%2F123.png&type=sc960_832"
-                                    alt="...">
-                                <img src="https://i.ibb.co/QK2zSL3/f.png" alt="" class="jb-c" img class="img-block"
-                                    style="border-radius: 50%;">
-                            </div>
-                        </a>
-                    </div>
-                    <h2 style="font-size: 15px; margin-bottom: 5px; margin-left: 15px;"> @buck_k_s </h2>
+                    <div id="sort">
+                        <div class="circle">
+                            <a href="https://www.instagram.com/buck_k_s/">
+                                <div class="jb-a">
+                                    <img class="img-block" style="border-radius: 50%;"
+                                        src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA5MDJfMjU3%2FMDAxNjMwNTY0ODcwNTE3.VjgOeC-KG7iCDeITLNp7FR7lhMg4k7njqYmW_a5LEPAg.9KQ1kWRFlKVogdGM9lkb4BlDze0r-lNQZKvrPFw3yd8g.PNG.ricemuseum1%2F123.png&type=sc960_832"
+                                        alt="...">
+                                    <img src="https://i.ibb.co/QK2zSL3/f.png" alt="" class="jb-c" img class="img-block"
+                                        style="border-radius: 50%;">
+                                </div>
+                            </a>
+                        </div>
+                        <h2 style="font-size: 15px; margin-bottom: 5px; margin-left: 15px;"> @buck_k_s </h2>
 
-                    <div>
+                        <div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 </body>
+
 </html>
