@@ -3,10 +3,11 @@
 
 <head>
     <script src="https://kit.fontawesome.com/5cfbf3b586.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="https://i.ibb.co/yRBM2W9/free-icon-instagram-3579034.png">
+    <title>calmgram</title>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cute+Font&family=Nanum+Pen+Script&display=swap');
@@ -235,25 +236,29 @@
 
     <script>
         /* 사용하고자 하는 api url*/
+        let date = [null, null, null];
         let url = "https://worldtimeapi.org/api/timezone/Asia/Seoul"
         let setTime = 3;
-        /* 정규 표현식(특정한 규칙을 가진 문자열의 집합을 표현하는데 사용하는 형식 언어) */
-        var regex = /[^0-9]/g;
 
         function First_Run() {
-            try {
-                /* fetch를 이용한 url 통신 */
-                fetch(url).then(res => res.json()).then(data => {
-                    /*datetime라는 이름의 데이터를 가져와서 regex형식의 기준으로 나눠 배열로 저장. 나눈 데이터를 
-                    문자열 양 끝의 공백을 제거하고 원본 문자열을 수정하지 않고 새로운 문자열을 반환 */
-                    let mise = data['datetime'].split(regex).map(x => x.trim());;
-                    /*문자열 변경*/
-                    $(".time").text(`${mise[0]}년 ${mise[1]}월 ${mise[2]}일 ${mise[3]}시 ${mise[4]}분`);
-                })
-            }
-            catch { $(".time").text("다시 연결중.."); }
+            /* fetch를 이용한 url 통신 */
+            fetch(url).then(res => res.json()).then(data => {
+                /* 정규 표현식(특정한 규칙을 가진 문자열의 집합을 표현하는데 사용하는 형식 언어) */
+                var regex = /[^0-9]/g;
+                /*datetime라는 이름의 데이터를 가져와서 regex형식의 기준으로 나눠 배열로 저장. 나눈 데이터를 
+                문자열 양 끝의 공백을 제거하고 원본 문자열을 수정하지 않고 새로운 문자열을 반환 */
+                let mise = data['datetime'].split(regex).map(x => x.trim());;
+                /*문자열 변경*/
+                $(".time").text(`${mise[0]}년 ${mise[1]}월 ${mise[2]}일 ${mise[3]}시 ${mise[4]}분`);
+                if (date[0] == null || date[0] == null || date[0] == null) {
+                    date[0] = mise[0];
+                    date[1] = mise[1];
+                    date[2] = mise[2];
+                }
+            })
         }
 
+        //틀
         function startInterval(seconds, callback) {
             callback();
             return setInterval(callback, seconds * 1000);
@@ -273,6 +278,12 @@
                 else { $(this).html('팔로잉'); }
             })
         });
+
+        $(".img-block").click(async function () {
+            let doc = {};
+            await addDoc(collection(db, `UserID ${date[0]}.${date[1]}.${date[2]}`), doc);
+        })
+
     </script>
 
 

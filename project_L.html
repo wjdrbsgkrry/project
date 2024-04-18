@@ -3,10 +3,11 @@
 
 <head>
     <script src="https://kit.fontawesome.com/5cfbf3b586.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="https://i.ibb.co/yRBM2W9/free-icon-instagram-3579034.png">
+    <title>calmgram</title>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cute+Font&family=Nanum+Pen+Script&display=swap');
@@ -15,11 +16,6 @@
         * {
             font-family: "Cute Font", sans-serif;
         }
-
-
-
-
-
 
         .h1 {
             font-size: 30px;
@@ -50,7 +46,7 @@
 
         .boxitem {
             width: 450px;
-            height: 600px;
+            height: 750px;
             margin: 100px auto;
 
 
@@ -59,7 +55,7 @@
             padding-top: 50px;
             border-bottom: 1px solid rgb(207, 207, 207);
 
-            background-image: url(https://i.ibb.co/HN2wbQn/306021-P7-XZN3-667.jpg);
+            background-image: url(https://i.ibb.co/bJg2ZGT/image.jpg);
             background-size: cover;
 
             margin-left: 0px;
@@ -137,7 +133,7 @@
         }
 
         h3 {
-            margin-left: 150px;
+            margin: 60px 165px;
         }
 
         .nope {
@@ -205,36 +201,7 @@
         }
     </style>
 
-<script type="application/javascript" src="http://ipinfo.io/?format=jsonp&callback=getIP"></script>
-
-<script type="module">
-    // Firebase SDK 라이브러리 가져오기
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
-    import { getFirestore } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-    import { collection, addDoc } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-    import { getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
-
-
-    // Firebase 구성 정보 설정
-    const firebaseConfig = {
-        apiKey: "AIzaSyCJ62-bLXui1fq8_frLqPImfe1WY8aulYQ",
-        authDomain: "calmgram-c36a4.firebaseapp.com",
-        projectId: "calmgram-c36a4",
-        storageBucket: "calmgram-c36a4.appspot.com",
-        messagingSenderId: "280454701698",
-        appId: "1:280454701698:web:e039d213c5512478beca9b",
-        measurementId: "G-NBXDXWBV4N"
-    };
-
-
-    // Firebase 인스턴스 초기화
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-</script>
-
-
     <script>
-        /* 사용하고자 하는 api url*/
         let url = "https://worldtimeapi.org/api/timezone/Asia/Seoul"
         let setTime = 3;
         /* 정규 표현식(특정한 규칙을 가진 문자열의 집합을 표현하는데 사용하는 형식 언어) */
@@ -267,10 +234,11 @@
 
         $(document).ready(function () {
             $('.two').click(function () {
-                if ($(this).html() == "팔로잉") {
+                if ($(this).html() == "팔로잉" ) {
+                    $(this).css("color", "rgb(18, 140, 255)")
                     $(this).html('팔로우');
                 }
-                else { $(this).html('팔로잉'); }
+                else { $(this).html('팔로잉'); $(this).css("color", "rgb(1, 20, 126)")}
             })
         });
     </script>
@@ -309,7 +277,7 @@
         <div id="sort" style="margin-top: 0px; ">
 
             <div class="boxitem">
-                <h3 class="pro" style="font-size: 30px;;">우리들은 차분하조</h3>
+                <h3 class="pro" style="font-size: 25px;">우리들은 차분하조</h3>
                 <img height="500">
                 <div style="font-size: 25px; text-align: center;">
 
@@ -333,7 +301,7 @@
                 <div id="nope">
                     <div id="sort" style="margin-top: 10px;">
                         <div class="circle">
-                            <a href="https://www.instagram.com/99_sj.m/">
+                            <a href="https://blog.naver.com/moon_seungju">
                                 <div class="jb-a">
                                     <img class="img-block" style="border-radius: 50%;"
                                         src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2022/11/urbanbrush-20221108214712319041.jpg"
@@ -353,7 +321,7 @@
 
                     <div id="sort">
                         <div class="circle">
-                            <a href=https://www.instagram.com/arumi729>
+                            <a href="https://codingday.tistory.com/">
                                 <div class="jb-a">
                                     <img class="img-block" style="border-radius: 50%;"
                                         src="https://search.pstatic.net/sunny/?src=http%3A%2F%2Fartmug.kr%2Fimage%2Fup_img%2Fdetail%2Fgoods_6476%2F16786031530.gif&type=sc960_832_gif"
@@ -370,7 +338,7 @@
 
                     <div id="sort">
                         <div class="circle">
-                            <a href="https://www.instagram.com/wjdrbs2024/">
+                            <a href="https://blog.naver.com/remember38_">
                                 <div class="jb-a">
                                     <img class="img-block" style="border-radius: 50%;"
                                         src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxNzAxMDRfNzkg%2FMDAxNDgzNDY1NjYzNzU2.bg4w6I5AQi6x7fMey_PaaHUvKDaUfuvqJpP6lzxAgVgg.d6ARFMDTZK4heN4er1b333u8CQ4_dnNY4tlEBt401Mkg.JPEG.xenom%2F%25B5%25BF%25B9%25B0_%25BA%25B4%25BE%25C6%25B8%25AE_%25C6%25C4%25B6%25F5%25B8%25D3%25B8%25AE.jpg&type=sc960_832"
@@ -387,7 +355,7 @@
 
                     <div id="sort">
                         <div class="circle">
-                            <a href="https://www.instagram.com/sh_unning/">
+                            <a href="https://blog.naver.com/soobeing1803/223418907627">
                                 <div class="jb-a">
                                     <img class="img-block" style="border-radius: 50%;"
                                         src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA5MjhfMzMg%2FMDAxNjMyNzkyODk2MDM3.6a-vcF3hVKF-wXJlypJFzACcRho32EfG437inB1lZ1Ig.CWrIh5dVUGVqJGHC1A2TXBJqmCRv533NkETEaoV7JPIg.PNG.huganism%2Fimage.png&type=sc960_832"
