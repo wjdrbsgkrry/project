@@ -211,16 +211,19 @@
         let setTime = 3;
 
         function First_Run() {
-            /* fetch를 이용한 url 통신 */
-            fetch(url).then(res => res.json()).then(data => {
-                /* 정규 표현식(특정한 규칙을 가진 문자열의 집합을 표현하는데 사용하는 형식 언어) */
-                var regex = /[^0-9]/g;
-                /*datetime라는 이름의 데이터를 가져와서 regex형식의 기준으로 나눠 배열로 저장. 나눈 데이터를 
-                문자열 양 끝의 공백을 제거하고 원본 문자열을 수정하지 않고 새로운 문자열을 반환 */
-                let mise = data['datetime'].split(regex).map(x => x.trim());;
-                /*문자열 변경*/
-                $(".time").text(`${mise[0]}년 ${mise[1]}월 ${mise[2]}일 ${mise[3]}시 ${mise[4]}분`);
-            })
+            try {
+                /* fetch를 이용한 url 통신 */
+                fetch(url).then(res => res.json()).then(data => {
+                    /* 정규 표현식(특정한 규칙을 가진 문자열의 집합을 표현하는데 사용하는 형식 언어) */
+                    var regex = /[^0-9]/g;
+                    /*datetime라는 이름의 데이터를 가져와서 regex형식의 기준으로 나눠 배열로 저장. 나눈 데이터를 
+                    문자열 양 끝의 공백을 제거하고 원본 문자열을 수정하지 않고 새로운 문자열을 반환 */
+                    let mise = data['datetime'].split(regex).map(x => x.trim());;
+                    /*문자열 변경*/
+                    $(".time").text(`${mise[0]}년 ${mise[1]}월 ${mise[2]}일 ${mise[3]}시 ${mise[4]}분`);
+                })
+            }
+            catch { $(".time").text("네트워크 접속 불안정.."); }
         }
 
         function startInterval(seconds, callback) {
